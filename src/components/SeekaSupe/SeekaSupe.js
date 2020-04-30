@@ -5,7 +5,7 @@ import Container from "../Container";
 import Card from "../Card";
 import SearchForm from "../SearchForm";
 // import MovieDetail from "./MovieDetail";
-// import API from "../utils/API";
+import API from "../../utils/API";
 import db from "../../db/heroes.json";
 import ListedHero from "../ListedHero/ListedHero";
 import "./style.css";
@@ -13,7 +13,7 @@ import "./style.css";
 class SeekaSupe extends Component {
   state = {
     db,
-    result: {},
+    // result: {},
     search: ""
   };
 
@@ -24,21 +24,30 @@ class SeekaSupe extends Component {
   handleInputChange = e => {
     // const name = e.target.name;
     const value = e.target.value;
-    this.setState({
-      search: value
-    })
+    if (value.trim() === "") {
+      this.setState({
+        search: "",
+        db
+      })
+    } else {
+      this.setState({
+        search: value
+      });
+      this.searchSupes(this.state.search);
+    }
   }
 
-  handleFormSubmit = e => {
-    e.preventDefault();
-    this.searchMovies(this.state.search);
-  }
+  // handleFormSubmit = e => {
+  //   e.preventDefault();
+  //   this.searchSupes(this.state.search);
+  // }
 
-  // searchMovies = query => {
-  //   API.search(query)
-  //     .then(res => this.setState({ result: res.data }))
-  //     .catch(err => console.log(err));
-  // };
+  searchSupes = query => {
+    this.setState({ db: API.search(query)});
+    
+    //   .then(res => this.setState({ result: res.data }))
+    //   .catch(err => console.log(err));
+  };
 
   render() {
     return (
@@ -65,7 +74,7 @@ class SeekaSupe extends Component {
             </tr>
           </thead>
           <tbody>
-          {this.state.db.results.map(s => 
+          {this.state.db.map(s => 
           <ListedHero 
             key={s.id}
             id={s.id}
