@@ -8,6 +8,7 @@ import SearchForm from "../SearchForm";
 // import API from "../utils/API";
 import db from "../../db/heroes.json";
 import ListedHero from "../ListedHero/ListedHero";
+import "./style.css";
 
 class SeekaSupe extends Component {
   state = {
