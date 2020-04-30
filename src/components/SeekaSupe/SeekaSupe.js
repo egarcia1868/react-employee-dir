@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Container from "../Container";
 // import Row from "./Row";
 // import Col from "./Col";
-import Card from "../Card";
+// import Card from "../Card";
 import SearchForm from "../SearchForm";
 // import MovieDetail from "./MovieDetail";
 import API from "../../utils/API";
@@ -22,6 +22,9 @@ class SeekaSupe extends Component {
   // }
 
   handleInputChange = e => {
+    // if (this.db !== undefined) {
+      // console.log("hIC: "+this.state.db.length)
+    //   }
     // const name = e.target.name;
     const value = e.target.value;
     if (value.trim() === "") {
@@ -31,9 +34,10 @@ class SeekaSupe extends Component {
       })
     } else {
       this.setState({
-        search: value
+        search: value,
+        db: API.search(value)
       });
-      this.searchSupes(this.state.search);
+      // this.searchSupes(this.state.search);
     }
   }
 
@@ -42,12 +46,14 @@ class SeekaSupe extends Component {
   //   this.searchSupes(this.state.search);
   // }
 
-  searchSupes = query => {
-    this.setState({ db: API.search(query)});
+  // searchSupes = query => {
+  //   this.setState({ });
     
-    //   .then(res => this.setState({ result: res.data }))
-    //   .catch(err => console.log(err));
-  };
+    
+    
+  //   //   .then(res => this.setState({ result: res.data }))
+  //   //   .catch(err => console.log(err));
+  // };
 
   render() {
     return (
@@ -56,13 +62,14 @@ class SeekaSupe extends Component {
           <h1>Welcome to Seek-a-Supe!</h1>
           <h3>Got a super problem that needs to be dealt with.  Search our database of super heroes <span>(and villains if it's a little on the "illegal" side)</span> and find someone better suited to handle it:</h3>
         </header>
-        <Card heading="Search">
+        
           <SearchForm
+            state={this.state.search}
             value={this.state.search}
             handleInputChange={this.handleInputChange}
-            handleFormSubmit={this.handleFormSubmit}
+            // handleFormSubmit={this.handleFormSubmit}
           />
-        </Card>
+        
         <table>
           <thead>
             <tr>
