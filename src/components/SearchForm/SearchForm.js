@@ -1,7 +1,7 @@
 import React from "react";
 
 function SearchForm(props) {
-  console.log("hIC: "+props.state)
+  // console.log("hIC: "+props.state)
   return (
     <form>
       <div className="form-group">

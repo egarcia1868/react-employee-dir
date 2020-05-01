@@ -3,7 +3,6 @@ import Container from "../Container/Container";
 // import Row from "./Row";
 // import Col from "./Col";
 // import Card from "../Card";
-import HeroTable from "../HeroTable/HeroTable"
 import SearchForm from "../SearchForm/SearchForm";
 // import MovieDetail from "./MovieDetail";
 import API from "../../utils/API";
@@ -69,7 +68,30 @@ class SeekaSupe extends Component {
             handleInputChange={this.handleInputChange}
             // handleFormSubmit={this.handleFormSubmit}
           />
-        <HeroTable supes={this.state.db} />
+        
+        <table>
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>"Secret Identity"</th>
+              <th>Alignment</th>
+              <th>Publisher</th>
+            </tr>
+          </thead>
+          <tbody>
+          {this.state.db.map(s => 
+          <ListedHero 
+            key={s.id}
+            id={s.id}
+            name={s.name}
+            fullName={s.biography["full-name"]}
+            alignment={s.biography.alignment}
+            publisher={s.biography.publisher}
+            image={s.image.url}
+            />)}
+          </tbody>
+        </table>
       </Container>
     );
   }

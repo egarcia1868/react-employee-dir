@@ -11,6 +11,41 @@ import db from "../../db/heroes.json";
 import ListedHero from "../ListedHero/ListedHero";
 import "./style.css";
 
+const useSortableData = (items, config = null) => {
+  const [sortConfig, setSortConfig] = React.useState(config);
+
+  const sortedItems = React.useMemo(() => {
+    let sortableItems = [...items];
+    if (sortConfig !== null) {
+      sortableItems.sort((a, b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? -1 : 1;
+        }
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+    return sortableItems;
+  }, [items, sortConfig]);
+
+  const requestSort = (key) => {
+    let direction = 'ascending';
+    if (
+      sortConfig &&
+      sortConfig.key === key &&
+      sortConfig.direction === 'ascending'
+    ) {
+      direction = 'descending';
+    }
+    setSortConfig({ key, direction });
+  };
+
+  return { items: sortedItems, requestSort, sortConfig };
+};
+
+
 class SeekaSupe extends Component {
   state = {
     db,
@@ -69,7 +104,17 @@ class SeekaSupe extends Component {
             handleInputChange={this.handleInputChange}
             // handleFormSubmit={this.handleFormSubmit}
           />
-        <HeroTable supes={this.state.db} />
+        {this.state.db.map(s => 
+          <ListedHero 
+            key={s.id}
+            id={s.id}
+            name={s.name}
+            fullName={s.biography["full-name"]}
+            alignment={s.biography.alignment}
+            publisher={s.biography.publisher}
+            image={s.image.url}
+            />)}
+        <HeroTable data={this.state.db}/>
       </Container>
     );
   }
