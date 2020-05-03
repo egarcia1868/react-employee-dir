@@ -1,32 +1,19 @@
 import React, { Component } from "react";
 import Container from "../Container/Container";
-// import Row from "./Row";
-// import Col from "./Col";
-// import Card from "../Card";
 import HeroTable from "../HeroTable/HeroTable"
 import SearchForm from "../SearchForm/SearchForm";
-// import MovieDetail from "./MovieDetail";
-import API from "../../utils/API";
 import db from "../../db/heroes.json";
-import ListedHero from "../ListedHero/ListedHero";
+import API from "../../utils/API";
 import "./style.css";
+
 
 class SeekaSupe extends Component {
   state = {
     db,
-    // result: {},
     search: ""
   };
 
-  // componentDidMount() {
-  //   this.searchMovies("Spider Man");
-  // }
-
   handleInputChange = e => {
-    // if (this.db !== undefined) {
-      // console.log("hIC: "+this.state.db.length)
-    //   }
-    // const name = e.target.name;
     const value = e.target.value;
     if (value.trim() === "") {
       this.setState({
@@ -38,23 +25,33 @@ class SeekaSupe extends Component {
         search: value,
         db: API.search(value)
       });
-      // this.searchSupes(this.state.search);
     }
-  }
+  };
 
-  // handleFormSubmit = e => {
-  //   e.preventDefault();
-  //   this.searchSupes(this.state.search);
+  // sorter = (a, b) => {
+  //   if (a === undefined) {
+  //     return -1
+  //   } else if (b === undefined) {
+  //     return 1
+  //   } else if (a === b) {
+  //     return 0
+  //   } else {
+  //     return a - b
+  //   }
   // }
 
-  // searchSupes = query => {
-  //   this.setState({ });
-    
-    
-    
-  //   //   .then(res => this.setState({ result: res.data }))
-  //   //   .catch(err => console.log(err));
-  // };
+  // db.sort(sorter)
+
+  handleSort = (columnTitle) => {
+    let sortArray;
+    const toggle = !this.state.ascending;
+    if(toggle) {
+      sortArray = this.state.db.sort((a, b) => (a[columnTitle].toLowerCase() > b[columnTitle].toLowerCase()) ? 1 : -1)
+    } else {
+      sortArray = this.state.db.sort((a, b) => (b[columnTitle].toLowerCase() > a[columnTitle].toLowerCase()) ? 1 : -1)
+    }
+    this.setState( { db: sortArray, ascending: toggle } );
+  }
 
   render() {
     return (
@@ -67,9 +64,28 @@ class SeekaSupe extends Component {
           <SearchForm
             value={this.state.search}
             handleInputChange={this.handleInputChange}
-            // handleFormSubmit={this.handleFormSubmit}
           />
-        <HeroTable supes={this.state.db} />
+          
+      <table>
+      <thead>
+        <tr>
+          <th>
+            Photo
+          </th>
+          <th onClick={() => this.handleSort("name")}>Name<i className="fas fa-arrows-alt-v"></i></th>
+          <th>"Secret" Identity</th>
+          <th>Alignment</th>
+          <th>Publisher</th>
+        </tr>
+      </thead>
+      
+    <HeroTable 
+    // handleSort={this.handleSort} 
+    supes={this.state.db} 
+    />        
+    
+    </table>
+
       </Container>
     );
   }
