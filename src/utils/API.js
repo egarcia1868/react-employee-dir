@@ -1,5 +1,5 @@
-import db from "../db/heroes.json"
-
+// import db from "../db/heroes.json"
+// 
 // export default {
 //   search: function(query) {
 //     console.log(query)

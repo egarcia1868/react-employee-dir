@@ -1,8 +1,8 @@
 import React from "react";
-import SeekaSupe from "./components/SeekaSupe/SeekaSupe";
+import Directory from "./components/DirectoryContainer";
 
 function App() {
-  return <SeekaSupe />;
+  return <Directory />;
 }
 
 export default App;
