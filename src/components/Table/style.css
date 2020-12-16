@@ -1,9 +1,25 @@
-table, td, th{
-  border: 1px solid #000; 
+table, td, th {
+  border: 1px solid #000;
   border-collapse: collapse;
   text-align: center
 }
 
 table {
   width: 100%
+}
+
+img {
+  width: 75px
+}
+
+.statsL {
+  border: 0 solid #000;
+  border-right: 1px solid #000;
+  width: 15%
+}
+
+.statsR {
+  border: 0 solid #000;
+  border-left: 1px solid #000;
+  width: 25%
 }
