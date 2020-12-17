@@ -8,12 +8,20 @@ class Directory extends Component {
   state ={
     //This will save all the super heroes that match whats entered into the search field.
     filteredList: [],
-    search: ""
+    search: "",
+    filtered: false
   }
 
+  // This will change what is shown in the search field as you type
   handleInputChange = event => {
     const value = event.target.value;
     this.setState({ search: value })
+  }
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    //this will create a new array of supes that include the searched entry
+    this.setState({filteredList: DB.filter(supe => supe.name.includes(this.state.search))})
   }
   
 // If a power stat is listed as "null", this will change it to unk before adding it the directory
@@ -23,6 +31,10 @@ class Directory extends Component {
     } else {
       return heroStat
     }
+  }
+
+  componentDidMount() {
+    this.setState({filteredList: DB})
   }
 
   render() {
@@ -39,11 +51,11 @@ class Directory extends Component {
           value={this.state.search}
           filteredList={this.state.filteredList}
           fullList={DB}
+          handleFormSubmit={this.handleFormSubmit}
         />
         <Table 
-          tableRowCreater={this.tableRowCreater}
           handleNull={this.handleNull}
-          fullList={DB}
+          filteredList={this.state.filteredList}
         />
       </div>
     )

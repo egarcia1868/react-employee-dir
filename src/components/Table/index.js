@@ -39,7 +39,7 @@ const Table = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.fullList.map(hero => 
+        {props.filteredList.map(hero => 
           <tr key={hero.id}>
             <td><img src={hero.image.url} alt=""/></td>
             <td>{hero.name}</td>
