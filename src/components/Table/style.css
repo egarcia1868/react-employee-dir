@@ -29,3 +29,11 @@ p {
   width: 27%
 }
 
+.sort {
+  text-decoration: underline;
+  color: blue;
+}
+
+.sort:hover {
+  cursor: pointer;
+}

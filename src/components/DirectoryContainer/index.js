@@ -8,8 +8,7 @@ class Directory extends Component {
     //This will save all the super heroes that match whats entered into the search field.
     filteredList: [],
     search: "",
-    sorter: ["alignment","asc"],
-    // alignment: [[],[],[]]
+    sorter: "asc",
   }
 
   // This will change what is shown in the search field as you type
@@ -37,7 +36,6 @@ class Directory extends Component {
     })
   }
 
-  //  NEED TO EXPAND UPON THIS FOR POWER STATS.  WILL ONLY WORK WITH NAME AND AFFINITY RIGHT NOW
   handleSorter = event => {
     const sortBy = event.target.dataset.sortBy;
     let filteredList = this.state.filteredList;
@@ -55,14 +53,14 @@ class Directory extends Component {
       switch(sortBy) {
         case "name":
           // This will determine which way the chart is currently being sorted and reverse it
-          if (this.state.sorter[1] === "asc") {
+          if (this.state.sorter === "asc") {
             // orderFlipper(-1, 1, "name", "des");
             
             // Below is essentially what the above code equates to
-            this.setState({filteredList: this.state.filteredList.sort((a, b) => (a.name > b.name) ? -1 : 1), sorter: ["name", "des"]})
+            this.setState({filteredList: this.state.filteredList.sort((a, b) => (a.name > b.name) ? -1 : 1), sorter: "des"})
           } else {
             // orderFlipper(1, -1, "name", "asc");
-            this.setState({filteredList: this.state.filteredList.sort((a, b) => (a.name > b.name) ? 1 : -1), sorter: ["name", "asc"]})
+            this.setState({filteredList: this.state.filteredList.sort((a, b) => (a.name > b.name) ? 1 : -1), sorter: "asc"})
           }
           break;
         case "alignment":
@@ -79,52 +77,52 @@ class Directory extends Component {
               third.push(filteredList[i])
             }
           }
-          if (this.state.sorter[1] === "asc") {
-            this.setState({filteredList: first.concat(second, third), sorter: ["alignment", "des"]})
+          if (this.state.sorter === "asc") {
+            this.setState({filteredList: first.concat(second, third), sorter: "des"})
           } else {
-            this.setState({filteredList: third.concat(second, first), sorter: ["alignment", "asc"]})
+            this.setState({filteredList: third.concat(second, first), sorter: "asc"})
           }
           break;
         case "intelligence":
-          if (this.state.sorter[1] === "asc") {
-            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "intelligence", -1, 1), sorter: ["intelligence", "des"]})
+          if (this.state.sorter === "asc") {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "intelligence", -1, 1), sorter: "des"})
           } else {
-            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "intelligence", 1, -1), sorter: ["intelligence", "asc"]})
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "intelligence", 1, -1), sorter: "asc"})
           }
           break;
         case "strength":
-          if (this.state.sorter[1] === "asc") {
-            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "strength", -1, 1), sorter: ["strength", "des"]})
+          if (this.state.sorter === "asc") {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "strength", -1, 1), sorter: "des"})
           } else {
-            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "strength", 1, -1), sorter: ["strength", "asc"]})
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "strength", 1, -1), sorter: "asc"})
           }
           break;
         case "speed":
-          if (this.state.sorter[1] === "asc") {
-            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "speed", -1, 1), sorter: ["speed", "des"]})
+          if (this.state.sorter === "asc") {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "speed", -1, 1), sorter: "des"})
           } else {
-            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "speed", 1, -1), sorter: ["speed", "asc"]})
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "speed", 1, -1), sorter: "asc"})
           }
           break;
         case "durability":
-          if (this.state.sorter[1] === "asc") {
-            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "durability", -1, 1), sorter: ["durability", "des"]})
+          if (this.state.sorter === "asc") {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "durability", -1, 1), sorter: "des"})
           } else {
-            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "durability", 1, -1), sorter: ["durability", "asc"]})
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "durability", 1, -1), sorter: "asc"})
           }
           break;
         case "power":
-          if (this.state.sorter[1] === "asc") {
-            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "power", -1, 1), sorter: ["power", "des"]})
+          if (this.state.sorter === "asc") {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "power", -1, 1), sorter: "des"})
           } else {
-            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "power", 1, -1), sorter: ["power", "asc"]})
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "power", 1, -1), sorter: "asc"})
           }
           break;
         case "combat":
-          if (this.state.sorter[1] === "asc") {
-            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "combat", -1, 1), sorter: ["combat", "des"]})
+          if (this.state.sorter === "asc") {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "combat", -1, 1), sorter: "des"})
           } else {
-            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "combat", 1, -1), sorter: ["combat", "asc"]})
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "combat", 1, -1), sorter: "asc"})
           }
           break;
         default:

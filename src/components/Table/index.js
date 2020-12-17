@@ -9,35 +9,35 @@ const Table = (props) => {
         <thead>
           <tr>
             <th>Photo</th>
-            <th data-sort-by="name" onClick={props.handleSorter}>Name</th>
+            <th data-sort-by="name" onClick={props.handleSorter} className="sort">Name</th>
             <th>
               Power Stats
               <table style={{border: "none"}}>
                 <thead>
                   <tr>
-                    <th data-sort-by="intelligence" onClick={props.handleSorter} className="statsL">
+                    <th data-sort-by="intelligence" onClick={props.handleSorter} className="statsL sort">
                       Int
                     </th>
-                    <th data-sort-by="strength" onClick={props.handleSorter} className="statsL">
+                    <th data-sort-by="strength" onClick={props.handleSorter} className="statsL sort">
                       Str
                     </th>
-                    <th data-sort-by="speed" onClick={props.handleSorter} className="statsL">
+                    <th data-sort-by="speed" onClick={props.handleSorter} className="statsL sort">
                       Spd
                     </th>
-                    <th data-sort-by="durability" onClick={props.handleSorter} className="statsL">
+                    <th data-sort-by="durability" onClick={props.handleSorter} className="statsL sort">
                       Dur
                     </th>
-                    <th data-sort-by="power" onClick={props.handleSorter} className="statsL">
+                    <th data-sort-by="power" onClick={props.handleSorter} className="statsL sort">
                       Pow
                     </th>
-                    <th data-sort-by="combat" onClick={props.handleSorter} className="statsR">
+                    <th data-sort-by="combat" onClick={props.handleSorter} className="statsR sort">
                       Combat
                     </th>
                   </tr>
                 </thead>
               </table>
             </th>
-            <th data-sort-by="alignment" onClick={props.handleSorter}>Alignment</th>
+            <th data-sort-by="alignment" onClick={props.handleSorter} className="sort">Alignment</th>
           </tr>
         </thead>
         <tbody>
