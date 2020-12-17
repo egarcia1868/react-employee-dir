@@ -1,14 +1,22 @@
 import React, {Component} from "react";
 import Table from "../Table";
-import DB from "../../db/heroes.json"
+import SearchForm from "../SearchForm";
+import DB from "../../db/heroes.json";
 
 
 class Directory extends Component {
   state ={
-    //fullList is a placeholder.  Will use full db list once everything is functioning
-    filteredList: []
+    //This will save all the super heroes that match whats entered into the search field.
+    filteredList: [],
+    search: ""
   }
 
+  handleInputChange = event => {
+    const value = event.target.value;
+    this.setState({ search: value })
+  }
+  
+// If a power stat is listed as "null", this will change it to unk before adding it the directory
   handleNull = (heroStat) => {
     if (heroStat === "null") {
       return "unk"
@@ -26,12 +34,16 @@ class Directory extends Component {
         <h2>
           Got a super problem that needs to be dealt with?  Search our database of super heroes (and villians if the task is a little on the shady side) and find someone better suited to handle it:
         </h2>
-        {/* input field here */}
+        <SearchForm 
+          handleInputChange={this.handleInputChange}
+          value={this.state.search}
+          filteredList={this.state.filteredList}
+          fullList={DB}
+        />
         <Table 
-        filteredList={this.state.filteredList}
-        fullList={DB}
-        tableRowCreater={this.tableRowCreater}
-        handleNull={this.handleNull}
+          tableRowCreater={this.tableRowCreater}
+          handleNull={this.handleNull}
+          fullList={DB}
         />
       </div>
     )
