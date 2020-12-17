@@ -2,7 +2,7 @@
 
 https://cryptic-lowlands-31610.herokuapp.com/
 
-An app for displaying a database of employees (used a database of Superheroes to make it more fun) with the ability to search by superhero name as well as organize list by alphabetical order. 
+An app for displaying a database of employees (used a database of Superheroes to make it more fun) with the ability to search by superhero name as well as organize list by various stats. 
 
 ## Getting Started
 
