@@ -25,19 +25,16 @@ class Directory extends Component {
   }
 
   statComparer = (list, statBase, stat, num1, num2) => {
-    // Creating a function to compare objects by specific nested values as explained here: https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
-    
-    // return list.sort((a, b) => ((isNaN(b[statBase][stat])) || parseInt(a[statBase][stat]) > parseInt(b[statBase][stat])) ? num1 : num2)
 
     return list.sort((a, b) => {
+      // This will check to see if the stat is a number or "unk".  If "unk" it will send that supe to the bottom
       if (isNaN(a[statBase][stat])) {
         return 1
       } else { 
-        return parseInt(a[statBase][stat]) > parseInt(b[statBase][stat]) ? num1 : num2 }
-      })
-
-    // Creating a function to compare objects by specific nested values as explained here:  https://www.xspdf.com/resolution/52767763.html
-    // var sort = function (prop, arr) { arr.sort(function (a, b) { if (a[prop] < b[prop]) { return -1; } else if (a[prop] > b[prop]) { return 1; } else { return 0; } }); };
+        // After making sure the stat is not "unk", this will order the supes in ascending or descending order.
+        return parseInt(a[statBase][stat]) > parseInt(b[statBase][stat]) ? num1 : num2 
+      }
+    })
   }
 
   //  NEED TO EXPAND UPON THIS FOR POWER STATS.  WILL ONLY WORK WITH NAME AND AFFINITY RIGHT NOW
@@ -100,6 +97,34 @@ class Directory extends Component {
             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "strength", -1, 1), sorter: ["strength", "des"]})
           } else {
             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "strength", 1, -1), sorter: ["strength", "asc"]})
+          }
+          break;
+        case "speed":
+          if (this.state.sorter[1] === "asc") {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "speed", -1, 1), sorter: ["speed", "des"]})
+          } else {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "speed", 1, -1), sorter: ["speed", "asc"]})
+          }
+          break;
+        case "durability":
+          if (this.state.sorter[1] === "asc") {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "durability", -1, 1), sorter: ["durability", "des"]})
+          } else {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "durability", 1, -1), sorter: ["durability", "asc"]})
+          }
+          break;
+        case "power":
+          if (this.state.sorter[1] === "asc") {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "power", -1, 1), sorter: ["power", "des"]})
+          } else {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "power", 1, -1), sorter: ["power", "asc"]})
+          }
+          break;
+        case "combat":
+          if (this.state.sorter[1] === "asc") {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "combat", -1, 1), sorter: ["combat", "des"]})
+          } else {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "combat", 1, -1), sorter: ["combat", "asc"]})
           }
           break;
         default:
