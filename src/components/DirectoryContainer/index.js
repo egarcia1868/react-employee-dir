@@ -21,7 +21,7 @@ class Directory extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     //this will create a new array of supes that include the searched entry
-    this.setState({filteredList: DB.filter(supe => supe.name.includes(this.state.search))})
+    this.setState({filteredList: DB.filter(supe => supe.name.toLowerCase().includes(this.state.search.toLowerCase()))})
   }
 
   //  NEED TO EXPAND UPON THIS FOR POWER STATS.  WILL ONLY WORK WITH NAME AND AFFINITY RIGHT NOW
@@ -35,8 +35,6 @@ class Directory extends Component {
     // const orderFlipper = (num1, num2, category, order) => {
     //   this.setState({filteredList: this.state.filteredList.sort((a, b) => (a.category > b.category) ? num1 : num2), sorter: [category, order]})
     // }
-
-    // if (sortBy === this.state.sorter[0]) {
 
 
       // Since some of the things we'll be sorting by are more nested in the JSON than others, we need to do different things to sort depending on which is clicked.  This is where the switch statement comes in.
@@ -76,7 +74,6 @@ class Directory extends Component {
           break;
         default:
           break;
-      // }
 
       
     }
