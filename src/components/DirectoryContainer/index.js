@@ -24,9 +24,19 @@ class Directory extends Component {
     this.setState({filteredList: DB.filter(supe => supe.name.toLowerCase().includes(this.state.search.toLowerCase()))})
   }
 
+  statComparer = (list, statBase, stat, num1, num2) => {
+    // Creating a function to compare objects by specific nested values as explained here: https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
+    
+    return list.sort((a, b) => ((isNaN(b[statBase][stat])) || parseInt(a[statBase][stat]) > parseInt(b[statBase][stat])) ? num1 : num2)
+
+    // Creating a function to compare objects by specific nested values as explained here:  https://www.xspdf.com/resolution/52767763.html
+    // var sort = function (prop, arr) { arr.sort(function (a, b) { if (a[prop] < b[prop]) { return -1; } else if (a[prop] > b[prop]) { return 1; } else { return 0; } }); };
+  }
+
   //  NEED TO EXPAND UPON THIS FOR POWER STATS.  WILL ONLY WORK WITH NAME AND AFFINITY RIGHT NOW
   handleSorter = event => {
     const sortBy = event.target.dataset.sortBy;
+    let filteredList = this.state.filteredList;
 
     // This function is to exercise DIY since this function framework will be used a lot in the resorting
 
@@ -55,7 +65,6 @@ class Directory extends Component {
           const first = [];
           const second = [];
           const third = [];
-          const filteredList = this.state.filteredList
           // this will seperate the supes into groups based on their alignment
           for(let i = 1; i < filteredList.length; i++) {
             if (filteredList[i].biography.alignment === "bad") {
@@ -71,6 +80,18 @@ class Directory extends Component {
           } else {
             this.setState({filteredList: third.concat(second, first), sorter: ["alignment", "asc"]})
           }
+          break;
+        case "intelligence":
+          if (this.state.sorter[1] === "asc") {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "intelligence", -1, 1), sorter: ["intelligence", "des"]})
+          } else {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "intelligence", 1, -1), sorter: ["intelligence", "asc"]})
+          }
+          // if (this.state.sorter[1] === "asc") {
+          //   this.setState({filteredList: this.statComparer(this.state.filteredList, ["powerstats"].intelligence, -1, 1), sorter: ["intelligence", "des"]})
+          // } else {
+          //   this.setState({filteredList: this.statComparer(this.state.filteredList, ["powerstats"].intelligence, 1, -1), sorter: ["intelligence", "asc"]})
+          // }
           break;
         default:
           break;
