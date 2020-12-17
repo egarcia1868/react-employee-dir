@@ -27,7 +27,14 @@ class Directory extends Component {
   statComparer = (list, statBase, stat, num1, num2) => {
     // Creating a function to compare objects by specific nested values as explained here: https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
     
-    return list.sort((a, b) => ((isNaN(b[statBase][stat])) || parseInt(a[statBase][stat]) > parseInt(b[statBase][stat])) ? num1 : num2)
+    // return list.sort((a, b) => ((isNaN(b[statBase][stat])) || parseInt(a[statBase][stat]) > parseInt(b[statBase][stat])) ? num1 : num2)
+
+    return list.sort((a, b) => {
+      if (isNaN(a[statBase][stat])) {
+        return 1
+      } else { 
+        return parseInt(a[statBase][stat]) > parseInt(b[statBase][stat]) ? num1 : num2 }
+      })
 
     // Creating a function to compare objects by specific nested values as explained here:  https://www.xspdf.com/resolution/52767763.html
     // var sort = function (prop, arr) { arr.sort(function (a, b) { if (a[prop] < b[prop]) { return -1; } else if (a[prop] > b[prop]) { return 1; } else { return 0; } }); };
@@ -87,11 +94,13 @@ class Directory extends Component {
           } else {
             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "intelligence", 1, -1), sorter: ["intelligence", "asc"]})
           }
-          // if (this.state.sorter[1] === "asc") {
-          //   this.setState({filteredList: this.statComparer(this.state.filteredList, ["powerstats"].intelligence, -1, 1), sorter: ["intelligence", "des"]})
-          // } else {
-          //   this.setState({filteredList: this.statComparer(this.state.filteredList, ["powerstats"].intelligence, 1, -1), sorter: ["intelligence", "asc"]})
-          // }
+          break;
+        case "strength":
+          if (this.state.sorter[1] === "asc") {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "strength", -1, 1), sorter: ["strength", "des"]})
+          } else {
+            this.setState({filteredList: this.statComparer(filteredList, "powerstats", "strength", 1, -1), sorter: ["strength", "asc"]})
+          }
           break;
         default:
           break;
