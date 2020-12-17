@@ -12,15 +12,20 @@ img {
   width: 75px
 }
 
+p {
+  margin-top: 40px;
+  font-size: 12px!important;
+}
+
 .statsL {
   border: 0 solid #000;
   border-right: 1px solid #000;
-  width: 15%
+  width: 14.6%
 }
 
 .statsR {
   border: 0 solid #000;
   border-left: 1px solid #000;
-  width: 25%
+  width: 27%
 }
 
