@@ -56,7 +56,6 @@ class Directory extends Component {
           if (this.state.sorter === "asc") {
             // orderFlipper(-1, 1, "name", "des");
             
-            // Below is essentially what the above code equates to
             this.setState({filteredList: this.state.filteredList.sort((a, b) => (a.name > b.name) ? -1 : 1), sorter: "des"})
           } else {
             // orderFlipper(1, -1, "name", "asc");
