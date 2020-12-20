@@ -11,8 +11,8 @@ An app for displaying a database of employees (used a database of Superheroes to
 
 ### Screenshot
 
-![Screenshot!](/public/SeekASupe.png?raw=true "Screenshot of how the employee list is displayed")
-This is what the employee list would display if you began typing in "spide"
+![Screenshot!](/public/react-employee-directory.gif?raw=true "demo of how the employee list is displayed")
+Example of how the employee directory reorganizes based on various clicked criteria.  When organized by stats, the unknowns are always kept to the bottom of the list.  When organizing by alignment, the neutrals always appear in the middle.  When a search is typed in (with autosuggested names), the directory changes to only those with names containing the searched entry.
 
 
 ## Built With
