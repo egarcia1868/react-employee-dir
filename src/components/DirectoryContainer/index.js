@@ -113,7 +113,6 @@ const Directory = () => {
       switch(sortBy) {
         case "name":
           setFilteredList( filteredList.sort((a, b) => (a.name > b.name) ? 1 : -1));
-          // setCategory("name");
           break;
 
         case "alignment":
@@ -131,37 +130,30 @@ const Directory = () => {
             }
           };
           setFilteredList( first.concat(second, third));
-          // setCategory("alignment");
           break;
 
         case "intelligence":
           setFilteredList( statComparer(filteredList, "powerstats", "intelligence", 1, -1));
-          // setCategory("intelligence");
           break;
 
         case "strength":
           setFilteredList( statComparer(filteredList, "powerstats", "strength", 1, -1));
-          // setCategory("strength");
           break;
           
         case "speed":
           setFilteredList( statComparer(filteredList, "powerstats", "speed", 1, -1));
-          // setCategory("speed");
           break;
 
         case "durability":
           setFilteredList( statComparer(filteredList, "powerstats", "durability", 1, -1));
-          // setCategory("durability");
           break;
 
         case "power":
           setFilteredList( statComparer(filteredList, "powerstats", "power", 1, -1));
-          // setCategory("power");
           break;
 
         case "combat":
           setFilteredList( statComparer(filteredList, "powerstats", "combat", 1, -1));
-          // setCategory("combat");
           break;
 
         default:
@@ -170,94 +162,6 @@ const Directory = () => {
     }
   }
 
-
-
-//       switch(sortBy) {
-//         case "name":
-//           // This will determine which way the chart is currently being sorted and reverse it
-//           if (sorter === "asc") {
-//             // orderFlipper(-1, 1, "name", "des");
-            
-//             setFilteredList( filteredList.sort((a, b) => (a.name > b.name) ? -1 : 1))
-//             setSorter( "des" )
-//           } else {
-//             // orderFlipper(1, -1, "name", "asc");
-//             setFilteredList( filteredList.sort((a, b) => (a.name > b.name) ? 1 : -1))
-//             setSorter( "asc")
-//           }
-//           break;
-//         case "alignment":
-//           const first = [];
-//           const second = [];
-//           const third = [];
-//           // this will seperate the supes into groups based on their alignment
-//           for(let i = 1; i < filteredList.length; i++) {
-//             if (filteredList[i].biography.alignment === "bad") {
-//               first.push(filteredList[i])
-//             } else if (filteredList[i].biography.alignment === "neutral") {
-//               second.push(filteredList[i])
-//             } else {
-//               third.push(filteredList[i])
-//             }
-//           }
-//           if (sorter === "asc") {
-//             setFilteredList( first.concat(second, third) )
-//             setSorter( "des" )
-//           } else {
-//             setFilteredList( third.concat(second, first))
-//             setSorter( "asc" )
-//           }
-//           break;
-//         case "intelligence":
-//           if (sorter === "asc") {
-//             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "intelligence", -1, 1), sorter: "des"})
-//           } else {
-//             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "intelligence", 1, -1), sorter: "asc"})
-//           }
-//           break;
-//         case "strength":
-//           if (this.state.sorter === "asc") {
-//             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "strength", -1, 1), sorter: "des"})
-//           } else {
-//             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "strength", 1, -1), sorter: "asc"})
-//           }
-//           break;
-//         case "speed":
-//           if (this.state.sorter === "asc") {
-//             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "speed", -1, 1), sorter: "des"})
-//           } else {
-//             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "speed", 1, -1), sorter: "asc"})
-//           }
-//           break;
-//         case "durability":
-//           if (this.state.sorter === "asc") {
-//             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "durability", -1, 1), sorter: "des"})
-//           } else {
-//             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "durability", 1, -1), sorter: "asc"})
-//           }
-//           break;
-//         case "power":
-//           if (this.state.sorter === "asc") {
-//             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "power", -1, 1), sorter: "des"})
-//           } else {
-//             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "power", 1, -1), sorter: "asc"})
-//           }
-//           break;
-//         case "combat":
-//           if (this.state.sorter === "asc") {
-//             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "combat", -1, 1), sorter: "des"})
-//           } else {
-//             this.setState({filteredList: this.statComparer(filteredList, "powerstats", "combat", 1, -1), sorter: "asc"})
-//           }
-//           break;
-//         default:
-//           break;
-
-      
-//     }
-//   }
-  
-// If a power stat is listed as "null", this will change it to unk before adding it the directory
   const handleNull = (heroStat) => {
     if (heroStat === "null") {
       return "unk"
