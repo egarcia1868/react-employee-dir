@@ -1,6 +1,6 @@
 # React Employee Directory
 
-https://cryptic-lowlands-31610.herokuapp.com/
+https://react-employee-directory1868.herokuapp.com/
 
 An app for displaying a database of employees (used a database of Superheroes to make it more fun) with the ability to search by superhero name as well as organize list by various criteria.
 
