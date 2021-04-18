@@ -178,7 +178,7 @@ const Directory = () => {
   return (
     <div className="container">
       <h1>
-        Welcomd to Seek-a-Supe!
+        Welcome to Seek-a-Supe!
       </h1>
       <h2>
         Got a super problem that needs to be dealt with?  Search our database of super heroes (and villians if the task is a little on the shady side) and find someone better suited to handle it:
@@ -186,7 +186,6 @@ const Directory = () => {
       <SearchForm 
         handleInputChange={handleInputChange}
         value={search}
-        filteredList={filteredList}
         fullList={DB}
         handleFormSubmit={handleFormSubmit}
       />
